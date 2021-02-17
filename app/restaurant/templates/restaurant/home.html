@@ -1,0 +1,46 @@
+{% extends 'restaurant/base.html' %}
+
+{% block content %}
+<form action="{% url 'home' %}" method="POST">
+<div class="card m-3">
+    <dev class="card-header">
+        Add New Foods
+    </dev>
+    <dev class="card-body">
+            {% csrf_token %}
+            {{form.as_p}}
+    </dev>
+    <dev class="card-footer d-flex">
+        <button class="btn btn-primary">Save</button>
+    </dev>
+</div>
+</form>
+
+
+<div class="ml-3 mt-5 mr-3 mb-5">
+    <hr>
+        <h3 class="text-center">Food Menu</h3>
+    <hr>
+</div>
+
+
+{% for food in foods %}
+<div class="card m-3">
+    <dev class="card-header">
+        {{food.name}}
+    </dev>
+    <dev class="card-body">
+        {{food.desc}}
+    </dev>
+    <dev class="card-footer d-flex">
+        <div class="">
+            Price: ${{food.price}}
+        </div>
+        <div class="ml-auto">
+            <button class="btn btn-primary">Buy Now</button>
+        </div>
+    </dev>
+</div>
+{% endfor %}
+
+{% endblock %}
